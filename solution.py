@@ -8,9 +8,11 @@ def solution(x_success: int,
              x_cnt: int, 
              y_success: int, 
              y_cnt: int) -> bool:
-    test = proportions_ztest(count=[x_success, y_success], nobs=[x_cnt, y_cnt], alternative = 'smaller')
+    successes = np.array([x_success, y_success])
+    samples = np.array([x_cnt, y_cnt])
+    test = proportions_ztest(count=successes, nobs=samples,  alternative='smaller')
     if test[1] < 0.08:
-      answer = False
-    else:
       answer = True
+    else:
+      answer = False
     return answer # Ваш ответ, True или False
